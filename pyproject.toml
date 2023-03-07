@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "match-citations"
+version = "0.1.0"
+description = ""
+authors = ["Jakob Hauser <jakob.e.hauser@protonmail.com>"]
+readme = "README.md"
+packages = [{include = "match_citations"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pandas = "^1.5.3"
+nltk = "^3.8.1"
+
+[tool.poetry.group.dev.dependencies]
+pyright = "^1.1.296"
+jupyterlab = "^3.6.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
