@@ -2,3 +2,11 @@
 https://www.zotero.org/groups/1051264/seshat_databank/items/JLUQ2Z9P
 The date is 1078 but book was written in 1992 I think.
 
+
+* improvement ideas:
+** TODO remove first name matches for authors and/or add matches of initials for authors
+** TODO add 2 word chunk matching to title instead/additionally to BOW method
+
+** TODO create validation data set
+Lets see how good our method perform maybe we can even do hyperparameter optimization
+

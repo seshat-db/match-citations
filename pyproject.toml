@@ -10,6 +10,8 @@ packages = [{include = "match_citations"}]
 python = "^3.9"
 pandas = "^1.5.3"
 nltk = "^3.8.1"
+tdqm = "^0.0.1"
+ipywidgets = "^8.0.4"
 
 [tool.poetry.group.dev.dependencies]
 pyright = "^1.1.296"

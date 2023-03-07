@@ -2,8 +2,8 @@ import re
 import json
 
 from nltk.tokenize import word_tokenize
-from collections import OrderedDict
 
+from tqdm import tqdm
 # import nltk
 # nltk.download('punkt')
 
@@ -90,9 +90,9 @@ def search_match(citation, zoteros):
 
 def main():
 
-    with open("all_citations_with_duplicates_indicated.json", "r") as handle:
+    with open("/home/scrappy/csh/match-citations/all_citations_with_duplicates_indicated_for_seshat_browser_Jan_30_2023.json", "r") as handle:
         citations = json.load(handle)
-    with open ("/home/scrappy/csh/match-citations/Seshat Databank.json", "r") as handle:
+    with open ("/home/scrappy/csh/match-citations/Seshat_Databank.json", "r") as handle:
         library = json.load(handle)
 
     preprocessed = []
@@ -103,35 +103,23 @@ def main():
 
 
     
-    for ref_id , citation in citations.items():
+    n = len(citations.keys())
+    num_scores = 0
+
+    # pbar = tqdm(desc="citations searched", total = n)
+    for ref_id , citation in tqdm(citations.items()):
         
         if citation.startswith("IS_DUPLICATE"):
             citations[ref_id] = citations[citation[13:]]
         
         else :
             citations[ref_id] = (search_match(citation, preprocessed))
+        if citations[ref_id][0] > 0.5:
+            num_scores += 1
         
 
     
-    num_scores = 0
-    for i in citations.values():
-        if type(i[1]) == str:
-            continue
-        if i[0] > 0.4:
-            num_scores += 1
-        # print(i[0])
-        # print(i[1])
-        # print(i[2])
-        # print("\n")
-        # # for x in i:
-        # #     print(x)
-
-        # # break
-        # # if len(i[0]) > 2:
-        # #     print(i[0][1])
-        # #     print(i[0][2])
-    # return citations
-    print(num_scores, "/" , len(citations.keys()))
+    print(num_scores, "/" , n)
 
 
 
